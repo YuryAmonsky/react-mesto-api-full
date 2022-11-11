@@ -1,0 +1,18 @@
+.footer {
+  margin: 67px auto 0;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 282px;
+  max-width: 880px;
+  min-height: 22px;
+}
+
+@media screen and (max-width: 917px) {
+  .footer {
+    margin: calc(48px + 19 * (100vw - 320px) / 597) 19px 0;
+    padding-bottom: calc(36px + 24 * (100vw - 320px) / 597);
+    width: calc(100vw - 38px);
+    min-height: 17px;
+  }
+}

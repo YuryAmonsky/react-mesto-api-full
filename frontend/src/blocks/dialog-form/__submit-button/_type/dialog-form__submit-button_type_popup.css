@@ -1,0 +1,21 @@
+.dialog-form__submit-button_type_popup {
+  margin-top: 18px;
+  margin-bottom: 37px;
+  background-color: #000;
+  color: #fff;  
+}
+
+.dialog-form__submit-button_type_popup:nth-child(2){
+  margin-top: 38px;
+}
+
+.dialog-form__submit-button_type_popup:hover {
+  opacity: .8; 
+}
+
+@media screen and (max-width: 619px) {
+  .dialog-form__submit-button_type_popup {
+    margin-top: 45px;
+    margin-bottom: 25px;    
+  }
+}

@@ -1,0 +1,24 @@
+.dialog-form__submit-button {
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  min-height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  transition: opacity .3s;
+}
+
+.dialog-form__submit-button:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 619px) {
+  .dialog-form__submit-button {
+    height: calc(46px + 4 * (100vw - 320px) /300);
+    font-size: calc(14px + 4 * (100vw - 320px) /300);
+    line-height: calc(17px + 5 * (100vw - 320px) /300);
+  }
+}

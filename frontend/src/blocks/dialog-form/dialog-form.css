@@ -1,0 +1,15 @@
+.dialog-form {
+  margin: 0;
+  padding: 0 36px;
+  box-sizing: border-box;
+  width: 430px;
+  display: flex;
+  flex-direction: column;  
+}
+
+@media screen and (max-width: 619px) {
+  .dialog-form {
+    padding: 0 calc(22px + 14 * (100vw - 320px) / 300);
+    width: calc(282px + 148 * (100vw - 320px) / 300);
+  }
+}

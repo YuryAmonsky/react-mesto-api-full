@@ -1,0 +1,5 @@
+.infotooltip__image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}

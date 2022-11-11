@@ -1,0 +1,21 @@
+.nav-bar__link {  
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 1;
+  transition: .3s;
+}
+
+.nav-bar__link:hover {
+  opacity: 0.6
+}
+
+@media screen and (max-width: 880px) {
+  .nav-bar__link {
+    font-size: calc(14px + 4 * (100vw - 320px)/560);
+    line-height: calc(17px + 5 * (100vw - 320px)/560);
+  }
+}  

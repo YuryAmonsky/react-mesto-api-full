@@ -1,0 +1,23 @@
+.profile__info {
+  margin: auto 0 auto 30px;
+  padding: 0;
+  width: auto;
+  max-width: calc(880px - 330px);
+  display: flex;
+  align-items: baseline;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: 18px;
+  row-gap: 16px;
+}
+
+@media screen and (max-width: 719px) {
+  .profile__info {
+    margin: 26px auto 36px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    column-gap: 10px;
+    row-gap: 14px;
+  }
+}

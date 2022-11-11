@@ -1,0 +1,25 @@
+.profile__avatar-container {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.profile__avatar-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../../../images/ui/Edit_large.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.profile__avatar-container:hover::before {
+  opacity: .8;
+  cursor: pointer;
+}

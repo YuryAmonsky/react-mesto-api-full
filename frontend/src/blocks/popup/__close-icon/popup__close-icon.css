@@ -1,0 +1,31 @@
+.popup__close-icon {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: end;
+  justify-self: start;
+  margin: 0 0 8px 8px;
+  padding: 0;
+  border: none;
+  width: 32px;
+  height: 32px;
+  background-image: url(../../../images/ui/Close_icon.svg);
+  background-size: contain;
+  /*задал прозрачный цвет фона кнопке*/
+  background-color: #00000000;
+  transition: opacity .3s;
+}
+
+.popup__close-icon:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 619px) {
+  .popup__close-icon {
+    grid-column: 2;
+    margin: 0 0 16px 0;
+    justify-self: end;
+    width: calc(20px + 12 * (100vw - 320px) / 300);
+    height: calc(20px + 12 * (100vw - 320px) / 300);
+  }
+}

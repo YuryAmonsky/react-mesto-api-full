@@ -1,0 +1,10 @@
+.dialog-form_type_popup {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;  
+  z-index: 1;
+  max-height: 330px;
+  border-radius: 10px;  
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,7 @@
+.location__like-group {
+  margin-top: 22px;
+  display: flex;
+  width: 22px;
+  flex-direction: column;
+  column-gap: 3px;
+}

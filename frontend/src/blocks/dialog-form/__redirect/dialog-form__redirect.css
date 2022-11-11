@@ -1,0 +1,14 @@
+.dialog-form__redirect {
+  margin-top: 15px;
+  grid-column: 2;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: baseline;
+}
+
+@media screen and (max-width: 619px) {
+  .dialog-form__redirect {
+    margin-top: calc(20px - 5px * (100vw - 320px)/300);
+  }
+}

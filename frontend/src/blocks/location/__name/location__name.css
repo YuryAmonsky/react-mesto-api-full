@@ -1,0 +1,11 @@
+.location__name {
+  margin: 25px 0 auto 21px;
+  padding: 0;
+  width: 224px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

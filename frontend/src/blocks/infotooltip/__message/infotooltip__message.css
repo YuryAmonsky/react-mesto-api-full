@@ -1,0 +1,17 @@
+.infotooltip__message {
+  margin: 0;
+  padding: 0;  
+  box-sizing: border-box;
+  text-align: center;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+@media screen and (max-width: 619px) {
+  .infotooltip__message {
+    font-size: calc(20px + 4 * (100vw - 320px)/300);
+    line-height: calc(24px + 5 * (100vw - 320px)/300);
+  }
+}

@@ -1,0 +1,31 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .5s, opacity .5s linear;
+}
+
+.popup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: .5;
+}
+
+.popup::before:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 619px) {
+  .popup {
+    grid-template-columns: 1fr min-content 1fr;
+  }
+}

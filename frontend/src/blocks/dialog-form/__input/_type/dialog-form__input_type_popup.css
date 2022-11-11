@@ -1,0 +1,23 @@
+.dialog-form__input_type_popup {
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dialog-form__input_type_popup:first-of-type {
+  margin: 54px 0 0 0;
+}
+
+.dialog-form__input_type_popup:last-of-type {
+  margin: 0;
+}
+
+.dialog-form__input_type_popup:only-of-type {
+  margin: 54px 0 0 0;
+}
+
+@media screen and (max-width: 619px) {
+  .dialog-form__input_type_popup:first-of-type {
+    margin-top: calc(75px - 21 * (100vw - 320px) /300);
+  }
+}

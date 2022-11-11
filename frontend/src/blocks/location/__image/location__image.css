@@ -1,0 +1,10 @@
+.location__image {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  grid-column: 1/span 2;  
+}
+
+.location__image:hover {
+  cursor: pointer;
+}  

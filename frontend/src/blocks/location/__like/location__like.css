@@ -1,0 +1,16 @@
+.location__like {
+  margin-top: 0px;
+  padding: 0;
+  border: none;
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../images/ui/like.svg);
+  /*меняю дефолтный фоновый цвет кнопки на цвет родительского блока*/
+  background-color: #fff;
+  transition: opacity .3s;
+}
+
+.location__like:hover {
+  opacity: .5;
+  cursor: pointer;
+}

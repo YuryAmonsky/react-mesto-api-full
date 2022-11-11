@@ -1,0 +1,5 @@
+@media screen and (max-width: 619px) {
+  .burger-nav-bar_is-open {           
+    margin-top: 0;
+  }
+}

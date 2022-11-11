@@ -1,0 +1,14 @@
+.dialog-form__link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 1;
+  transition: .3s;
+}
+
+.dialog-form__link:hover {
+  opacity: 0.6;
+}

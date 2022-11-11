@@ -1,0 +1,12 @@
+.location {
+  margin: 0 auto;
+  padding: 0;
+  width: 282px;
+  position: relative;
+  border-radius: 10px;
+  background-color: #fff;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 245px 37px;
+  grid-template-rows: 282px 79px;
+}

@@ -1,0 +1,12 @@
+.image-caption {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 10px 0 0 0;
+  padding: 0;
+  width: max-content;
+  height: min-content;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+}

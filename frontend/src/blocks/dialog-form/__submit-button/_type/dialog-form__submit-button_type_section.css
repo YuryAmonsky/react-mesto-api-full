@@ -1,0 +1,15 @@
+.dialog-form__submit-button_type_section {
+  margin-top: 216px;
+  background-color: #fff;
+  color: #000;
+}
+
+.dialog-form__submit-button_type_section:hover {
+  opacity: .85;
+}
+
+@media screen and (max-width: 619px) {
+  .dialog-form__submit-button_type_section {   
+    margin-top: calc(173px + 43 * (100vw - 320px) /300);
+  }
+}

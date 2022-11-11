@@ -1,0 +1,10 @@
+.nav-bar {
+  position: relative;
+  margin-top: 6px;
+  width: 738px;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 24px;
+}
