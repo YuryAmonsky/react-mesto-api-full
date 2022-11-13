@@ -31,7 +31,7 @@
     # Если передан некорректный токен
     401 — Переданный токен некорректен
  */
-export const baseUrl = 'https://auth.nomoreparties.co';
+export const baseUrl = 'http://localhost:3000'; // https://auth.nomoreparties.co';
 
 const request = ({
   url,
@@ -44,7 +44,7 @@ const request = ({
     headers: {
       //'Accept': 'application/json',
       'Content-type': 'application/json',
-      ...!!token && { 'Authorization': `Bearer ${token}` }
+      ...!!token && { 'authorization': `Bearer ${token}` }
     },
     ...!!data && { body: JSON.stringify(data) }
   })

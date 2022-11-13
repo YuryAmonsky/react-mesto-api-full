@@ -1,6 +1,37 @@
 {
+  "name": "express-mesto-gha",
+  "version": "1.0.0",
+  "description": "backend of the project \"Mesto\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --inspect app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuryAmonsky/express-mesto-gha.git"
+  },
+  "author": "Yury Amonsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuryAmonsky/express-mesto-gha/issues"
+  },
+  "homepage": "https://github.com/YuryAmonsky/express-mesto-gha#readme",
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20"
+  },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "celebrate": "^15.0.1",
+    "express": "^4.18.2",
     "express-winston": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.5",
     "winston": "^3.8.2"
   }
 }

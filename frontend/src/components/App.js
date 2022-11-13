@@ -169,7 +169,7 @@ function App() {
     setSubmitButtonState({ text: 'Сохранение', disabled: true });
     api.setUserInfo(objUserInfo)
       .then(updatedUser => {
-        setCurrentUser(updatedUser);
+        setCurrentUser(updatedUser.data);
         closeAllPopups();
       })
       .catch(err => {
@@ -184,7 +184,7 @@ function App() {
     setSubmitButtonState({ text: 'Загрузка', disabled: true });
     api.setAvatar(link)
       .then(updatedUser => {
-        setCurrentUser(updatedUser);
+        setCurrentUser(updatedUser.data);
         closeAllPopups();
       })
       .catch(err => {
@@ -200,7 +200,8 @@ function App() {
     setSubmitButtonState({ text: 'Добавление', disabled: true });
     api.addNewLocation(objNewCard)
       .then(newCard => {
-        setCards([newCard, ...cards]);
+        console.log(newCard);
+        setCards([newCard.data, ...cards]);
         closeAllPopups();
       })
       .catch(err => {
@@ -230,10 +231,10 @@ function App() {
   };
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCards((state) => state.map((c) => c._id === card._id ? newCard.data : c));
       })
       .catch(err => {
         console.log(err.status);
@@ -274,10 +275,11 @@ function App() {
           .then(res => {
             if (res) {
               setCurrentUserAccount({ loggedIn: true, email: res.data.email });
+              api._headers.authorization = `Bearer ${jwt}`;              
             }
           })
           .catch(err => {
-            switch (err.status) {
+            switch (err.statusCode) {
               case 400:
                 console.log('Токен не передан или передан не в том формате');
                 break;
@@ -296,21 +298,23 @@ function App() {
       }
     };
     checkLoggedIn();
-    Promise.all([
-      api.getUserInfo(),
-      api.loadLocations()
-    ])
-      .then((values) => {
-        setCurrentUser(values[0]);
-        setCards([...values[1]]);
-      }).catch(err => {
-        console.log(err.status);
-        alert(`Ошибка загрузки данных:\n ${err.status}\n ${err.statusText}`);
-      })
-      .finally(() => {
-        isUserDataLoaded.current = true;
-      });
-  }, []);
+    if(currentUserAccount.loggedIn){
+      Promise.all([
+        api.getUserInfo(),
+        api.loadLocations()
+      ])
+        .then((values) => {
+          setCurrentUser(values[0].data);
+          setCards([...values[1].data]);
+        }).catch(err => {
+          console.log(err.status);
+          alert(`Ошибка загрузки данных:\n ${err.status}\n ${err.statusText}`);
+        })
+        .finally(() => {
+          isUserDataLoaded.current = true;
+        });
+    }
+  }, [currentUserAccount.loggedIn]);
 
   useEffect(() => {
     if (currentUserAccount.loggedIn) history.push('/');
