@@ -1,4 +1,5 @@
 /* eslint no-console: ["error", { allow: ["log"] }] */
+const { NODE_ENV, JWT_SECRET } = process.env;
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -18,8 +19,21 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, SECRETKEY, { expiresIn: '7d' });
-      res.status(OK).send({ token, user });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : SECRETKEY,
+        { expiresIn: '7d' },
+      );
+      res.status(OK).send({
+        token,
+        user: {
+          _id: user._id,
+          name: user.name,
+          about: user.about,
+          avatar: user.avatar,
+          email: user.email,
+        },
+      });
     })
     .catch(next);
 };
@@ -56,12 +70,20 @@ module.exports.createUser = (req, res, next) => {
       ...req.body, password: hash,
     }))
     .then(({
-      name, about, avatar, email, _id, createdAt,
+      _id,
+      name,
+      about,
+      avatar,
+      email,
     }) => {
       res.status(OK).send(
         {
           data: {
-            name, about, avatar, email, _id, createdAt,
+            _id,
+            name,
+            about,
+            avatar,
+            email,
           },
         },
       );
