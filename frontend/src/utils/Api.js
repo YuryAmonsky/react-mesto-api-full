@@ -2,6 +2,10 @@ class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
+    
+  }
+  setAuthorization(token){
+    this._headers['authorization'] = `Bearer ${token}`;
   }
 
   _checkServerResponse(res) {

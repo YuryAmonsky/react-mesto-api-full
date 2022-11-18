@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import { api } from '../utils/Api';
-import { register, authorize, validateToken } from '../utils/Auth';
+import { register, authorize } from '../utils/Auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import ProtectedRoute from './ProtectedRoute';
 import Login from './Login';
@@ -39,7 +39,7 @@ function App() {
       'about': '',
       'avatar': '',
       '_id': '',
-      'cohort': '',
+      'email': '',
     });
 
   const [cards, setCards] = useState([]);
@@ -81,20 +81,27 @@ function App() {
     authorize(email, password)
       .then(res => {
         localStorage.setItem('jwt', res.token);
+        api.setAuthorization(res.token);
+        setCurrentUser({ ...res.user });
         //если получен токен, значит указанный email верный и его можно сохранить в стейт
         setCurrentUserAccount({ loggedIn: true, email });
+        isUserDataLoaded.current = true;
+        isTokenCheckFinished.current = true;
       })
       .catch(err => {
         switch (err.status) {
           case 400:
             console.log('Не передано одно из полей');
+            setRegInfo({ success: false, message: 'Не передано одно из полей' });
             break;
           case 401:
-            console.log(`пользователь с ${email} не найден`);
+            console.log(`Неправильные почта или пароль`);
+            setRegInfo({ success: false, message: 'Неправильные почта или пароль' });
             break;
           default:
-            console.log('Не удалось войти');
-        }
+            console.log('Не удалось войти');            
+        }        
+        setIsInfoTooltipOpen(true);
       })
       .finally(() => {
         setSubmitButtonState({ text: 'Войти', disabled: false });
@@ -105,6 +112,17 @@ function App() {
     localStorage.removeItem('jwt');
     setIsBurgerOpen(!isBurgerOpen);
     history.push('/sign-in');
+    setCurrentUserAccount({ loggedIn: false, email: '' });
+    api.setAuthorization('');
+    setCurrentUser({
+      'name': '',
+      'about': '',
+      'avatar': '',
+      '_id': '',
+      'email': '',      
+    });
+    isUserDataLoaded.current = false;
+    isTokenCheckFinished.current = false;
   };
   const handleLoginOpen = useCallback(() => {
     setSubmitButtonState({ text: 'Войти', disabled: true });
@@ -268,15 +286,15 @@ function App() {
 
   /**получение данных пользователя, загрузка карточек, проверка jwt */
   useEffect(() => {
-    const checkLoggedIn = () => {
+    /*const checkLoggedIn = () => {
+      isTokenCheckFinished.current = false;
       if (localStorage.getItem('jwt')) {
         const jwt = localStorage.getItem('jwt');
+        console.log(jwt);
         validateToken(jwt)
-          .then(res => {
-            if (res) {
+          .then(res => {           
               setCurrentUserAccount({ loggedIn: true, email: res.data.email });
-              api._headers.authorization = `Bearer ${jwt}`;              
-            }
+              api._headers.authorization = `Bearer ${jwt}`;            
           })
           .catch(err => {
             switch (err.statusCode) {
@@ -288,6 +306,7 @@ function App() {
                 break;
               default:
                 console.log('Не удалось проверить токен');
+                setCurrentUserAccount({ loggedIn: false, email: '' });
             };
           })
           .finally(() => {
@@ -296,28 +315,52 @@ function App() {
       } else {
         isTokenCheckFinished.current = true;
       }
-    };
-    checkLoggedIn();
-    if(currentUserAccount.loggedIn){
-      Promise.all([
-        api.getUserInfo(),
-        api.loadLocations()
-      ])
-        .then((values) => {
-          setCurrentUser(values[0].data);
-          setCards([...values[1].data]);
-        }).catch(err => {
-          console.log(err.status);
-          alert(`Ошибка загрузки данных:\n ${err.status}\n ${err.statusText}`);
-        })
-        .finally(() => {
-          isUserDataLoaded.current = true;
-        });
-    }
-  }, [currentUserAccount.loggedIn]);
+    };*/
+    //if (currentUserAccount.loggedIn) {
+      //checkLoggedIn();
+      
+    //} else {
+      if (localStorage.getItem('jwt')) {
+        const jwt = localStorage.getItem('jwt');
+        api.setAuthorization(jwt);
+
+        Promise.all([
+          api.getUserInfo(),
+          api.loadLocations()
+        ])
+          .then((values) => {
+            setCurrentUser({ ...values[0].data });            
+            setCards([...values[1].data]);
+            setCurrentUserAccount({ loggedIn: true, email: values[0].data.email });
+          }).catch(err => {
+            console.log(err);
+            alert(`Ошибка загрузки данных:\n ${err.status}\n ${err.statusText}`);
+          })
+          .finally(() => {
+            isTokenCheckFinished.current = true;
+            isUserDataLoaded.current = true;
+          });
+      }else{
+        api.setAuthorization('');
+        isTokenCheckFinished.current = true;
+      }
+    //}
+  }, []);
 
   useEffect(() => {
-    if (currentUserAccount.loggedIn) history.push('/');
+    if (currentUserAccount.loggedIn) {
+      api.loadLocations()
+        .then((cards) => {
+          setCards([...cards.data]);
+          history.push('/');
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(`Ошибка загрузки данных:\n ${err.status}\n ${err.statusText}`);
+        });
+
+    }  
+    //else history.push('/sign-in');
   }, [currentUserAccount, history]);
 
   useEffect(() => {
