@@ -7,7 +7,7 @@ const { login, createUser } = require('../controllers/users');
 const { URL_PATTERN, allowedCors, DEFAULT_ALLOWED_METHODS } = require('../utils/constants');
 const { NotFoundError } = require('../utils/errors/index');
 
-// обработка префлайт запроса
+// обработка простых CORS запросов и префлайт запросов
 router.use((req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
@@ -22,6 +22,12 @@ router.use((req, res, next) => {
   }
 
   return next();
+});
+
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
 });
 
 router.post('/signin', celebrate({
