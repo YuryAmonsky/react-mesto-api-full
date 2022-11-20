@@ -9,7 +9,7 @@ const handleError = require('./middlewares/handleError');
 
 const app = express();
 const { PORT = 3000 } = process.env;
-mongoose.connect('mongodb://api.amo.edu.nomoredomains.club:27017/mestodb');
+mongoose.connect('mongodb://localhost:27017/mestodb');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
