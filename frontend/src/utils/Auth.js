@@ -31,7 +31,7 @@
     # Если передан некорректный токен
     401 — Переданный токен некорректен
  */
-export const baseUrl = 'http://localhost:3000'; // https://auth.nomoreparties.co';
+export const baseUrl = 'http://api.amo.edu.nomoredomains.club';
 
 const request = ({
   url,
