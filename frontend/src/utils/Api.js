@@ -91,9 +91,9 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://api.amo.edu.nomoredomains.club',//'https://mesto.nomoreparties.co/v1/cohort-46',
+  baseUrl: 'http://api.amo.edu.nomoredomains.club',
   headers: {
-    authorization: '',//'5e6cc9f1-f651-45bc-a626-0a767814a31d',
+    authorization: '',
     'Content-Type': 'application/json'
   }
 });

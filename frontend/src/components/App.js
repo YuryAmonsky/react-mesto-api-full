@@ -285,41 +285,7 @@ function App() {
 
 
   /**получение данных пользователя, загрузка карточек, проверка jwt */
-  useEffect(() => {
-    /*const checkLoggedIn = () => {
-      isTokenCheckFinished.current = false;
-      if (localStorage.getItem('jwt')) {
-        const jwt = localStorage.getItem('jwt');
-        console.log(jwt);
-        validateToken(jwt)
-          .then(res => {           
-              setCurrentUserAccount({ loggedIn: true, email: res.data.email });
-              api._headers.authorization = `Bearer ${jwt}`;            
-          })
-          .catch(err => {
-            switch (err.statusCode) {
-              case 400:
-                console.log('Токен не передан или передан не в том формате');
-                break;
-              case 401:
-                console.log('Переданный токен некорректен');
-                break;
-              default:
-                console.log('Не удалось проверить токен');
-                setCurrentUserAccount({ loggedIn: false, email: '' });
-            };
-          })
-          .finally(() => {
-            isTokenCheckFinished.current = true;
-          });
-      } else {
-        isTokenCheckFinished.current = true;
-      }
-    };*/
-    //if (currentUserAccount.loggedIn) {
-      //checkLoggedIn();
-      
-    //} else {
+  useEffect(() => {    
       if (localStorage.getItem('jwt')) {
         const jwt = localStorage.getItem('jwt');
         api.setAuthorization(jwt);
