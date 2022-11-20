@@ -91,7 +91,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://api.amo.edu.nomoredomains.club',
+  baseUrl: 'https://api.amo.edu.nomoredomains.club',
   headers: {
     authorization: '',
     'Content-Type': 'application/json'
