@@ -1,8 +1,8 @@
 const OK = 200;
 const URL_PATTERN = /^https?:\/\/(?:w{3}\.)?(?:[a-z0-9]+[a-z0-9-]*\.)+[a-z]{2,}(?::[0-9]+)?(?:\/\S*)?#?$/i;
 const allowedCors = [
-  'http://localhost:3001',
-  'https://localhost:3001',
+  'http://localhost:3000',
+  'https://localhost:3000',
   'http://amo.edu.nomoredomains.icu',
   'https://amo.edu.nomoredomains.icu',
 ];
