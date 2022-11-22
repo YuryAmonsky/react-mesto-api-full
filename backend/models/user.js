@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const { UnathorizedError } = require('../utils/errors/index');
 const urlValidator = require('../utils/urlValidator');
+const emailValidator = require('../utils/emailValidator');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -27,6 +28,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    validator: emailValidator,
   },
   password: {
     type: String,
